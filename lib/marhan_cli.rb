@@ -1,5 +1,6 @@
-require "marhan_cli/version"
+require "marhan_cli/cli"
 
 module MarhanCli
-  # Your code goes here...
+
 end
+
