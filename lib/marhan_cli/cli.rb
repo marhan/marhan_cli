@@ -1,4 +1,5 @@
 require "thor"
+require 'marhan_cli/cli/server/remote_machine'
 
 module MarhanCli
   class Cli < Thor

@@ -1,8 +1,8 @@
 module MarhanCli
   class Constraint
 
-    def self.notNil!(argument)
-      raise ArgumentError "Given argument => #{argument} must not be null" if argument.nil?
+    def self.notNil!(argument, argument_name)
+      raise ArgumentError, "Given argument '#{argument_name}' must not be nil" if argument.nil?
     end
 
   end
