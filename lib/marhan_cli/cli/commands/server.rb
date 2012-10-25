@@ -17,6 +17,7 @@ module MarhanCli
 
       remote_machine = RemoteMachine.new(host, port)
       remote_machine.add_id_to_authorized_keys(user, password, id_file)
+      say "successfully copied #{id_file} to #{host}", :green
     rescue Exception => e
       say "copying of id file to remote machine failed: #{e}", :red
     end
