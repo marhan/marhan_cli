@@ -20,6 +20,7 @@ module MarhanCli
       say "successfully copied #{id_file} to #{host}", :green
     rescue Exception => e
       say "copying of id file to remote machine failed: #{e}", :red
+      exit(1)
     end
 
     protected

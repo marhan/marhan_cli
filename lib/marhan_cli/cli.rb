@@ -8,3 +8,4 @@ module MarhanCli
 end
 
 require "marhan_cli/cli/commands/server"
+require "marhan_cli/cli/commands/internet"
