@@ -1,6 +1,6 @@
 # MarhanCli
 
-TODO: Write a gem description
+This gem is a toolset my my own needs.
 
 ## Installation
 
