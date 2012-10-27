@@ -1,3 +1,5 @@
+require 'net/http'
+
 module MarhanCli
   class Cli
     include Thor::Actions
@@ -5,9 +7,10 @@ module MarhanCli
     desc "my-net-ip", "Gives out the external IP from the world wide web"
 
     def my_net_ip
-      cmd = "curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'"
-      res = `#{cmd}`
-      say("Your public IP is: #{res}", :blue)
+      uri = URI('http://checkip.dyndns.org')
+      response = Net::HTTP.get(uri)
+      ip_address = /[0-9\.]+/.match(response)
+      say("Your public IP is: #{ip_address}", :blue)
     end
 
   end
