@@ -7,3 +7,7 @@
 
 * Output improvement. (command: add-ssh-key)
 
+## v0.0.4
+
+* Retrieve the esternal ip address from the world wide web (command: my-net-ip)
+
