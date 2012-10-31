@@ -3,10 +3,24 @@ module MarhanCli
     include Thor::Actions
 
     desc "add-ssh-key", "Copies public ssh id into authorized_keys"
-    method_option :user, :type => :string, :aliases => "-u", :desc => "Name of user on remote machine"
-    method_option :host, :type => :string, :aliases => "-h", :desc => "Name of remote machine"
-    method_option :port, :type => :numeric, :aliases => "-p", :default => 22, :desc => "Port of remote machine"
-    method_option :file, :type => :string, :aliases => "-f", :default => "~/.ssh/id_rsa.pub", :desc => "Path of id file"
+    method_option :user, 
+      :type => :string, 
+      :aliases => "-u", 
+      :desc => "Name of user on remote machine"
+    method_option :host, 
+      :type => :string, 
+      :aliases => "-h", 
+      :desc => "Name of remote machine"
+    method_option :port, 
+      :type => :numeric, 
+      :aliases => "-p", 
+      :default => 22, 
+      :desc => "Port of remote machine"
+    method_option :file, 
+      :type => :string, 
+      :aliases => "-f", 
+      :default => "~/.ssh/id_rsa.pub", 
+      :desc => "Path of id file"
 
     def add_ssh_key
       host = options[:host] || get_option(:host)
