@@ -32,23 +32,35 @@ module MarhanCli
                   :desc => "Path of id file"
 
     def add_ssh_key
-      host = options[:host] || get_option(:host)
-      user = options[:user] || get_option(:user)
-      password = options[:password] || get_option(:password)
-      id_file = options[:file]
-      port = options[:port]
+      host = get_or_ask(:host)
+      user = get_or_ask(:user)
+      password = get_or_ask(:password)
+      id_file = get(:file)
+      port = get(:port)
 
       remote_machine = RemoteMachine.new(host, port)
       remote_machine.add_id_to_authorized_keys(user, password, id_file)
       say "successfully copied #{id_file} to #{host}", :green
     rescue Exception => e
-      say "copying of id file to remote machine failed: #{e}", :red
-      exit(1)
+      exit_command("copying of id file to remote machine failed: #{e}")
     end
 
     protected
 
-    def get_option(option)
+    def get(option_name)
+      options[option_name]
+    end
+
+    def get_or_ask(option_name)
+      host = options[option_name] || ask_for_option(:host)
+    end
+
+    def exit_command(message)
+      say message, :red
+      exit(1)
+    end
+
+    def ask_for_option(option)
       value = ask("Please enter #{option}:")
       raise Thor::Error, "You must enter a value for that field." if value.empty?
       value
