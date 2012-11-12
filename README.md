@@ -1,6 +1,6 @@
 # MarhanCli
 
-This gem is a toolset my my own needs.
+This gem is a console tool for my own needs.
 
 ## Installation
 
@@ -18,7 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Ater installation of the gem type `mcli` to get a list of possible commands
+
+    $ mcli
 
 ## Contributing
 
