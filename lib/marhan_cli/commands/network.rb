@@ -1,5 +1,5 @@
 # encoding: utf-8
-require 'marhan_cli/server/remote_machine'
+require 'marhan_cli/network/remote_machine'
 require 'marhan_cli/command'
 
 module MarhanCli

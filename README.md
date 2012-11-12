@@ -1,4 +1,4 @@
-# MarhanCli
+# MarhanCli [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/marhan/marhan_cli)
 
 This gem is a console tool for my own needs.
 
