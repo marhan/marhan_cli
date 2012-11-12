@@ -1,5 +1,5 @@
 require 'net/ssh'
-require 'marhan_cli/cli/helper/constraint'
+require 'marhan_cli/helper/constraint'
 
 module MarhanCli
   class RemoteMachine

@@ -1,12 +1,15 @@
+# encoding: utf-8
 require 'net/http'
+require 'marhan_cli/command'
 
 module MarhanCli
-  class Cli
-    include Thor::Actions
+  class Web < MarhanCli::Command
 
-    desc "my-net-ip", "Gives out the external IP from the world wide web"
+    namespace :web
 
-    def my_net_ip
+    desc "web:my-ip", "Gives out the external IP from the world wide web"
+
+    def my_ip
       uri = URI('http://checkip.dyndns.org')
       response = Net::HTTP.get(uri)
       ip_address = /[0-9\.]+/.match(response)

@@ -19,5 +19,4 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency('thor')
   gem.add_runtime_dependency('net-ssh', '~> 2.6.1')
-  #gem.add_runtime_dependency("term-ansicolor")
 end
