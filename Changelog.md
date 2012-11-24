@@ -23,3 +23,7 @@
 
 * TrueCrypt command added.
 * Mount and unmount commands for private hard disk added.
+
+## v0.0.7
+
+* TrueCrypt command for unmount all devices added.

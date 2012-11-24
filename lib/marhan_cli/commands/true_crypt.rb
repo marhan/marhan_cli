@@ -19,12 +19,24 @@ module MarhanCli
       end
     end
 
-    desc "crypt:unmount", "Unmounts encrypted disk with TrueCrypt"
+    desc "crypt:umount", "Unmounts encrypted disk with TrueCrypt"
 
     def unmount
       begin
         @app = TrueCryptApp.new
         run @app.unmount_command
+        say "finished", :green
+      rescue Exception => e
+        exit_with_error("Failed: #{e}")
+      end
+    end
+
+    desc "crypt:umount_all", "Unmounts all encrypted disk with TrueCrypt"
+
+    def umount_all
+      begin
+        @app = TrueCryptApp.new
+        run @app.unmount_all_command
         say "finished", :green
       rescue Exception => e
         exit_with_error("Failed: #{e}")
