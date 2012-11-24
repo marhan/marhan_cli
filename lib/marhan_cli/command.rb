@@ -7,9 +7,8 @@ module MarhanCli
 
     protected
 
-    def exit_command(message)
-      say message, :red
-      exit(1)
+    def exit_with_error(message)
+      raise Thor::Error, message
     end
 
   end

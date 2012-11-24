@@ -15,7 +15,7 @@ module MarhanCli
         run @app.mount_command
         say "finished", :green
       rescue Exception => e
-        exit_command("Failed: #{e}")
+        exit_with_error("Failed: #{e}")
       end
     end
 
@@ -27,7 +27,7 @@ module MarhanCli
         run @app.unmount_command
         say "finished", :green
       rescue Exception => e
-        exit_command("Failed: #{e}")
+        exit_with_error("Failed: #{e}")
       end
     end
 

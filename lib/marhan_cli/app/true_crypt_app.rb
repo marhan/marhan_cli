@@ -1,4 +1,4 @@
-require 'marhan_cli/helper/constraint'
+# encoding: utf-8
 
 module MarhanCli
   class TrueCryptApp
