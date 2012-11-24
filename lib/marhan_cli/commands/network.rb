@@ -55,11 +55,6 @@ module MarhanCli
       options[option_name] || ask_for_option(:host)
     end
 
-    def exit_command(message)
-      say message, :red
-      exit(1)
-    end
-
     def ask_for_option(option)
       value = ask("Please enter #{option}:")
       raise Thor::Error, "You must enter a value for that field." if value.empty?

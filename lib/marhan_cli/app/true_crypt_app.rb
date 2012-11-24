@@ -5,6 +5,7 @@ module MarhanCli
 
     def initialize()
       @binary = "/Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt"
+      raise ArgumentError, "No installation of TrueCrypt found!" unless File.exist? @binary
     end
 
     def mount_command()

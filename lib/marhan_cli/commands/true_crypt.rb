@@ -5,20 +5,30 @@ require 'marhan_cli/app/true_crypt_app'
 module MarhanCli
   class TrueCrypt < MarhanCli::Command
 
-    namespace :true_crypt
+    namespace :crypt
 
-    desc "true_crypt:mount", "Mounts encrypted disk with TrueCrypt"
+    desc "crypt:mount", "Mounts encrypted disk with TrueCrypt"
 
     def mount
-      say "Mount disk", :green
-      run TrueCryptApp.new.mount_command
+      begin
+        @app = TrueCryptApp.new
+        run @app.mount_command
+        say "finished", :green
+      rescue Exception => e
+        exit_command("Failed: #{e}")
+      end
     end
 
-    desc "true_crypt:unmount", "Unmounts encrypted disk with TrueCrypt"
+    desc "crypt:unmount", "Unmounts encrypted disk with TrueCrypt"
 
     def unmount
-      say "unmount disk", :green
-      run TrueCryptApp.new.unmount_command
+      begin
+        @app = TrueCryptApp.new
+        run @app.unmount_command
+        say "finished", :green
+      rescue Exception => e
+        exit_command("Failed: #{e}")
+      end
     end
 
   end
