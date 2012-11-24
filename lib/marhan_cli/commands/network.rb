@@ -52,7 +52,7 @@ module MarhanCli
     end
 
     def get_or_ask(option_name)
-      host = options[option_name] || ask_for_option(:host)
+      options[option_name] || ask_for_option(:host)
     end
 
     def exit_command(message)

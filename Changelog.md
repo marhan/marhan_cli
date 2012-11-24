@@ -19,3 +19,7 @@
     **my-net-ip** renamed to **web:my-ip**
     **add-ssh-key** renamed to **net:add-ssh-key**
 
+## v0.0.6
+
+* TrueCrypt command added.
+* Mount and unmount commands for private hard disk added.
