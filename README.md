@@ -22,6 +22,13 @@ Ater installation of the gem type `mcli` to get a list of possible commands
 
     $ mcli
 
+Configuration file `~/.marhan_cli.yml` is used for several commands
+
+    crypt:
+      mount_folder: /Volumes
+      encrypted_devices:
+        enc1: /dev/rdisk1s2
+
 ## Contributing
 
 1. Fork it
