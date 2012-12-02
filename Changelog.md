@@ -27,3 +27,4 @@
 ## v0.0.7
 
 * TrueCrypt command for unmount all devices added.
+* Expect configuration file '.marhan_cli.yaml' in home directory to define encrypted devices and mount folder.

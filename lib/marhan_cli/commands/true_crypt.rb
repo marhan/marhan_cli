@@ -11,11 +11,12 @@ module MarhanCli
 
     def mount
       begin
-        @app = TrueCryptApp.new
-        run @app.mount_command
+        config = load_config
+        @app = TrueCryptApp.new(config.crypt.mount_folder)
+        run @app.mount_command(config.crypt[:encrypted_devices])
         say "finished", :green
       rescue Exception => e
-        exit_with_error("Failed: #{e}")
+        exit_with_error(e)
       end
     end
 
@@ -23,11 +24,12 @@ module MarhanCli
 
     def unmount
       begin
-        @app = TrueCryptApp.new
+        config = load_config
+        @app = TrueCryptApp.new(config.crypt.mount_folder)
         run @app.unmount_command
         say "finished", :green
       rescue Exception => e
-        exit_with_error("Failed: #{e}")
+        exit_with_error(e)
       end
     end
 
@@ -39,7 +41,7 @@ module MarhanCli
         run @app.unmount_all_command
         say "finished", :green
       rescue Exception => e
-        exit_with_error("Failed: #{e}")
+        exit_with_error(e)
       end
     end
 
