@@ -10,6 +10,17 @@ module MarhanCli
 
     CONFIG_FILE = ".marhan_cli.yml"
 
+    def execute(proc)
+      begin
+        say ""
+        proc.call
+        say ""
+        say "End of command", :green
+      rescue Exception => e
+        exit_with_error(e)
+      end
+    end
+
     def exit_with_error(message)
       say message, :red
       exit(1)

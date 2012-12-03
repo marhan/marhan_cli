@@ -15,15 +15,7 @@ module MarhanCli
                   :desc => "Name of device in configuration file."
 
     def mount
-      begin
-        config = load_crypt_config
-        true_crypt = TrueCryptApp.new(config.mount_folder)
-        device = get_or_ask(:device)
-        run true_crypt.mount_command(config.encrypted_devices[device], device)
-        say "finished", :green
-      rescue Exception => e
-        exit_with_error(e)
-      end
+      execute mount_proc
     end
 
     desc "crypt:umount", "Unmounts encrypted disk with TrueCrypt"
@@ -34,30 +26,41 @@ module MarhanCli
                   :desc => "Name of device in configuration file."
 
     def umount
-      begin
-        config = load_crypt_config
-        true_crypt = TrueCryptApp.new(config.mount_folder)
-        device = get_or_ask(:device)
-        run true_crypt.unmount_command(device)
-        say "finished", :green
-      rescue Exception => e
-        exit_with_error(e)
-      end
+      execute unmount_proc
     end
 
     desc "crypt:umount_all", "Unmounts all encrypted disk with TrueCrypt"
 
     def umount_all
-      begin
-        true_crypt = TrueCryptApp.new
-        run true_crypt.unmount_all_command
-        say "finished", :green
-      rescue Exception => e
-        exit_with_error(e)
+      execute unmount_all_proc
+    end
+
+    private
+
+    def mount_proc
+      Proc.new do
+        config = load_crypt_config
+        true_crypt = TrueCryptApp.new(config.mount_folder)
+        device = get_or_ask(:device)
+        run true_crypt.mount_command(config.encrypted_devices[device], device)
       end
     end
 
-    protected
+    def unmount_proc
+      Proc.new do
+        config = load_crypt_config
+        true_crypt = TrueCryptApp.new(config.mount_folder)
+        device = get_or_ask(:device)
+        run true_crypt.unmount_command(device)
+      end
+    end
+
+    def unmount_all_proc
+      Proc.new do
+        true_crypt = TrueCryptApp.new
+        run true_crypt.unmount_all_command
+      end
+    end
 
     def load_crypt_config
       load_config.crypt

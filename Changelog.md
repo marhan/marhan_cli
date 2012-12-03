@@ -36,3 +36,7 @@
 ## v0.0.9
 
 * Name (configuration key) of device as parameter of unmount command. (command => crypt:unmount)
+
+## v0.0.10
+
+* Refactorings for cleaner code.

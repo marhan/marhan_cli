@@ -7,13 +7,21 @@ module MarhanCli
 
     namespace :web
 
-    desc "web:my-ip", "Gives out the external IP from the world wide web"
+    desc "web:myip", "Gives out the external IP from the world wide web"
 
-    def my_ip
-      uri = URI('http://checkip.dyndns.org')
-      response = Net::HTTP.get(uri)
-      ip_address = /[0-9\.]+/.match(response)
-      say("Your public IP is: #{ip_address}", :blue)
+    def myip
+      execute my_ip_proc()
+    end
+
+    private
+
+    def my_ip_proc
+      Proc.new do
+        uri = URI('http://checkip.dyndns.org')
+        response = Net::HTTP.get(uri)
+        ip_address = /[0-9\.]+/.match(response)
+        say("Your public IP is: #{ip_address}", :cyan)
+      end
     end
 
   end
