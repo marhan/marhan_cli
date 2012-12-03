@@ -9,11 +9,17 @@ module MarhanCli
 
     desc "crypt:mount", "Mounts encrypted disk with TrueCrypt"
 
+    method_option :device,
+                  :type => :string,
+                  :aliases => "-d",
+                  :desc => "Name of device in configuration file."
+
     def mount
       begin
         config = load_config
+        device = get_or_ask(:device)
         @app = TrueCryptApp.new(config.crypt.mount_folder)
-        run @app.mount_command(config.crypt[:encrypted_devices])
+        run @app.mount_command(config.crypt.encrypted_devices[device], device)
         say "finished", :green
       rescue Exception => e
         exit_with_error(e)
@@ -44,6 +50,5 @@ module MarhanCli
         exit_with_error(e)
       end
     end
-
   end
 end

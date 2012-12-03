@@ -24,5 +24,15 @@ module MarhanCli
       config = Ambience.create(config_file_path)
       config.to_mash
     end
+
+    def get_or_ask(option_name)
+      options[option_name] || ask_for_option(option_name)
+    end
+
+    def ask_for_option(option)
+      value = ask("Please enter #{option}:")
+      raise Thor::Error, "You must enter a value for that field." if value.empty?
+      value
+    end
   end
 end
