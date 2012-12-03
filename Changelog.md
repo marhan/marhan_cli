@@ -32,3 +32,7 @@
 ## v0.0.8
 
 * Name (configuration key) of device as parameter of mount command. (command => crypt:mount)
+
+## v0.0.9
+
+* Name (configuration key) of device as parameter of unmount command. (command => crypt:unmount)

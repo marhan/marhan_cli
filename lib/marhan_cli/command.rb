@@ -20,7 +20,7 @@ module MarhanCli
       unless File.exists?(config_file_path)
         raise "Stop processing! Command needs the configuration file '#{CONFIG_FILE}' in you're home directory."
       end
-      say "I will use the '#{CONFIG_FILE}' configuration file in you're home directory.", :cyan
+      #say "I will use the '#{CONFIG_FILE}' configuration file in you're home directory.", :cyan
       config = Ambience.create(config_file_path)
       config.to_mash
     end

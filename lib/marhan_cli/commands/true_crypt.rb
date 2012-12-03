@@ -16,10 +16,10 @@ module MarhanCli
 
     def mount
       begin
-        config = load_config
+        config = load_crypt_config
+        true_crypt = TrueCryptApp.new(config.mount_folder)
         device = get_or_ask(:device)
-        @app = TrueCryptApp.new(config.crypt.mount_folder)
-        run @app.mount_command(config.crypt.encrypted_devices[device], device)
+        run true_crypt.mount_command(config.encrypted_devices[device], device)
         say "finished", :green
       rescue Exception => e
         exit_with_error(e)
@@ -28,11 +28,17 @@ module MarhanCli
 
     desc "crypt:umount", "Unmounts encrypted disk with TrueCrypt"
 
-    def unmount
+    method_option :device,
+                  :type => :string,
+                  :aliases => "-d",
+                  :desc => "Name of device in configuration file."
+
+    def umount
       begin
-        config = load_config
-        @app = TrueCryptApp.new(config.crypt.mount_folder)
-        run @app.unmount_command
+        config = load_crypt_config
+        true_crypt = TrueCryptApp.new(config.mount_folder)
+        device = get_or_ask(:device)
+        run true_crypt.unmount_command(device)
         say "finished", :green
       rescue Exception => e
         exit_with_error(e)
@@ -43,12 +49,18 @@ module MarhanCli
 
     def umount_all
       begin
-        @app = TrueCryptApp.new
-        run @app.unmount_all_command
+        true_crypt = TrueCryptApp.new
+        run true_crypt.unmount_all_command
         say "finished", :green
       rescue Exception => e
         exit_with_error(e)
       end
+    end
+
+    protected
+
+    def load_crypt_config
+      load_config.crypt
     end
   end
 end

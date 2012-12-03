@@ -9,12 +9,12 @@ module MarhanCli
       @mount_folder = mount_folder
     end
 
-    def mount_command(encrypted_device, mount_to_folder)
-      "#{@binary} --mount #{encrypted_device} #{@mount_folder}/#{mount_to_folder}"
+    def mount_command(encrypted_device, mount_sub_folder)
+      "#{@binary} --mount #{encrypted_device} #{@mount_folder}/#{mount_sub_folder}"
     end
 
-    def unmount_command()
-      "#{@binary} -d #{@mount_folder}/enc1"
+    def unmount_command(mount_sub_folder)
+      "#{@binary} -d #{@mount_folder}/#{mount_sub_folder}"
     end
 
     def mount_folder
