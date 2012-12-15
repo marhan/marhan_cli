@@ -5,16 +5,16 @@ module MarhanCli
   class RemoteMachine
 
     def initialize(host, port)
-      Constraint.notNil!(host, "host")
-      Constraint.notNil!(port, "port")
+      Constraint.not_nil!(host, "host")
+      Constraint.not_nil!(port, "port")
       @host = host
       @port = port
     end
 
     def add_id_to_authorized_keys(user, password, id_file)
-      Constraint.notNil!(user, "user")
-      Constraint.notNil!(password, "password")
-      Constraint.notNil!(id_file, "id_file")
+      Constraint.not_nil!(user, "user")
+      Constraint.not_nil!(password, "password")
+      Constraint.not_nil!(id_file, "id_file")
 
       id_pub_content = File.read File.expand_path(id_file)
       id_pub_content = id_pub_content.chomp

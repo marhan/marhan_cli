@@ -40,3 +40,8 @@
 ## v0.0.10
 
 * Refactorings for cleaner code.
+
+## v0.0.11
+
+* First RSpec tests and guard added for TDD development.
+* VirtualBox command for start and stop virtual guest systems added. (command => vbox:[start|stop])

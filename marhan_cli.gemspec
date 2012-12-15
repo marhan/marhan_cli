@@ -20,4 +20,10 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('thor')
   gem.add_runtime_dependency('net-ssh', '~> 2.6.1')
   gem.add_runtime_dependency('ambience', '~> 2.0.0')
+
+  gem.add_development_dependency('rspec', '~> 2.12.0')
+  gem.add_development_dependency('guard', '~> 1.5.4')
+  gem.add_development_dependency('guard-rspec', '~> 2.3.1')
+  gem.add_development_dependency('rb-fsevent', '~> 0.9.1')
+
 end

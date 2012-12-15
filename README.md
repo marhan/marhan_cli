@@ -28,6 +28,11 @@ Configuration file `~/.marhan_cli.yml` is used for several commands
       mount_folder: /Volumes
       encrypted_devices:
         enc1: /dev/rdisk1s2
+        hdd: /dev/rdisk2s2
+    vbox:
+      guests:
+        linux: Linux
+        windows: Windows XP
 
 ## Contributing
 
