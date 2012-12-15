@@ -1,5 +1,5 @@
 guard 'rspec' do
-  watch(%r{^spec/(.+)\.rb$})
-  watch(%r{^lib/(.+)\.rb$})
+  watch(%r{^spec/.+}) {"spec"}
+  watch(%r{^lib/.+}) {"spec"}
 end
 
