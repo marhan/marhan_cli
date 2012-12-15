@@ -74,5 +74,4 @@ describe "VirtualBoxApp" do
       end
     end
   end
-
 end

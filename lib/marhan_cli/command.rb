@@ -1,14 +1,13 @@
 # encoding: utf-8
 require "thor"
 require "ambience"
+require 'marhan_cli/config'
 
 module MarhanCli
   class Command < Thor
     include Thor::Actions
 
     protected
-
-    CONFIG_FILE = ".marhan_cli.yml"
 
     def execute(proc)
       begin
@@ -29,12 +28,7 @@ module MarhanCli
     end
 
     def load_config
-      config_file_path = File.join(File.expand_path("~/"), CONFIG_FILE)
-      unless File.exists?(config_file_path)
-        raise "Stop processing! Command needs the configuration file '#{CONFIG_FILE}' in you're home directory."
-      end
-      config = Ambience.create(config_file_path)
-      config.to_mash
+      Config.init
     end
 
     def get_or_ask(option_name)
