@@ -21,8 +21,8 @@ module MarhanCli
     end
 
     def guest_ssh_server_up?(guest_config_name)
-      remote_machine = RemoteMachine.new("localhost", "2222")
-      remote_machine.ssh_server_running?("markus")
+      remote_machine = RemoteMachine.new(@guests[guest_config_name].ssh.host, @guests[guest_config_name].ssh.port)
+      remote_machine.ssh_server_running?(@guests[guest_config_name].ssh.user)
     end
 
     def vbox_name(guest_config_name)

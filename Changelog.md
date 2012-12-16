@@ -50,3 +50,7 @@
 
 * VirtualBox command connects automaticaly to ssh server, if guest configuration has 'ssh' connection data. (command => vbox:start)
 * 'VBoxManage controlvm ' uses 'acpipowerbutton' instead of 'poweroff', now. (command => vbox:stop)
+
+## v0.0.13
+
+* Configuration file will be used completely. 'SSH' configuration was ignored.

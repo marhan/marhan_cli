@@ -31,8 +31,14 @@ Configuration file `~/.marhan_cli.yml` is used for several commands
         hdd: /dev/rdisk2s2
     vbox:
       guests:
-        linux: Linux
-        windows: Windows XP
+        linux:
+          name: Ubuntu Linux
+          ssh:
+            user: nameofuser
+            host: localhost
+            port: 2222
+        windows:
+          name: Windows XP
 
 ## Contributing
 

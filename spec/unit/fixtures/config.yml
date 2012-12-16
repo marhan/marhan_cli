@@ -7,7 +7,7 @@ vbox:
     linux:
       name: Ubuntu Linux
       ssh:
-        user: markus
+        user: nameofuser
         host: localhost
         port: 2222
     windows:

@@ -42,7 +42,7 @@ describe "Config" do
       end
 
       it "with 'markus' for guests.linux.ssh.user" do
-        vbox.guests.linux.ssh.user.should eq("markus")
+        vbox.guests.linux.ssh.user.should eq("nameofuser")
       end
 
       it "with 'nil' for guests.windows.ssh.nil?" do
