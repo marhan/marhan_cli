@@ -1,9 +1,9 @@
 # encoding: utf-8
 require 'marhan_cli/command'
-require 'marhan_cli/app/true_crypt_app'
+require 'marhan_cli/apps/true_crypt'
 
 module MarhanCli
-  class TrueCrypt < MarhanCli::Command
+  class TrueCryptCommand < MarhanCli::Command
 
     namespace :crypt
 
@@ -40,7 +40,7 @@ module MarhanCli
     def mount_proc
       Proc.new do
         config = load_crypt_config
-        true_crypt = TrueCryptApp.new(config.mount_folder)
+        true_crypt = TrueCrypt.new(config.mount_folder)
         device = get_or_ask(:device)
         run true_crypt.mount_command(config.encrypted_devices[device], device)
       end
@@ -49,7 +49,7 @@ module MarhanCli
     def unmount_proc
       Proc.new do
         config = load_crypt_config
-        true_crypt = TrueCryptApp.new(config.mount_folder)
+        true_crypt = TrueCrypt.new(config.mount_folder)
         device = get_or_ask(:device)
         run true_crypt.unmount_command(device)
       end
@@ -57,7 +57,7 @@ module MarhanCli
 
     def unmount_all_proc
       Proc.new do
-        true_crypt = TrueCryptApp.new
+        true_crypt = TrueCrypt.new
         run true_crypt.unmount_all_command
       end
     end

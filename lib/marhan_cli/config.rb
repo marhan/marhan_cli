@@ -13,7 +13,12 @@ module MarhanCli
       unless File.exists?(config_file)
         raise "Stop processing! Command needs the configuration file '#{config_file}' in you're home directory."
       end
-      Ambience.create(config_file).to_mash
+      begin
+        Ambience.create(config_file).to_mash
+      rescue Exception => e
+        raise "Configuration file could not pared: #{e}"
+      end
+
     end
 
     def self.default_config_file

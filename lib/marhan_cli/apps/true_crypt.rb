@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module MarhanCli
-  class TrueCryptApp
+  class TrueCrypt
 
     def initialize(mount_folder = nil)
       @binary = "/Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt"

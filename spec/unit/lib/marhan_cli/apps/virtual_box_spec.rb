@@ -1,22 +1,23 @@
 # encoding: utf-8
 require 'spec_helper'
-require 'marhan_cli/app/virtual_box_app'
+require 'marhan_cli/apps/virtual_box'
+require 'marhan_cli/config'
 
 describe "VirtualBoxApp" do
 
-  let(:config_param) { Hashie::Mash.new(:linux => 'Ubuntu Linux') }
+  let(:config_param) { MarhanCli::Config.init(
+      File.join("spec", "unit", "fixtures", "config.yml")).vbox.guests }
+
+  let(:subject) { MarhanCli::VirtualBox.new(config_param) }
 
   context ".new" do
     describe "with empty hash as argument" do
-      let(:subject) { MarhanCli::VirtualBoxApp.new({}) }
       it "creates a new objects" do
-        subject.should be_a(MarhanCli::VirtualBoxApp)
+        subject.should be_a(MarhanCli::VirtualBox)
       end
     end
 
     describe "with config hash as argument" do
-      let(:subject) { MarhanCli::VirtualBoxApp.new(config_param) }
-
       it "has set config hash" do
         subject.guests.should eq(config_param)
       end
@@ -24,8 +25,6 @@ describe "VirtualBoxApp" do
   end
 
   context ".start_guest" do
-    let(:subject) { MarhanCli::VirtualBoxApp.new(config_param) }
-
     describe "with configured guest as argument" do
       it "returns correct command" do
         subject.start_guest('linux').should eq("VBoxManage startvm 'Ubuntu Linux'")
@@ -35,8 +34,6 @@ describe "VirtualBoxApp" do
   end
 
   context ".vbox_name" do
-    let(:subject) { MarhanCli::VirtualBoxApp.new(config_param) }
-
     describe "with configured guest as argument" do
       it "returns correct command" do
         subject.vbox_name('linux').should eq('Ubuntu Linux')
@@ -49,7 +46,7 @@ describe "VirtualBoxApp" do
           subject.vbox_name('minix')
         }.to raise_error(
                  error=ArgumentError,
-                 message="No guest with key 'minix' found in configuration")
+                 message="No guest with key 'minix' found in configuration!")
       end
     end
 
@@ -65,12 +62,9 @@ describe "VirtualBoxApp" do
   end
 
   context ".stop_guest" do
-
-    let(:subject) { MarhanCli::VirtualBoxApp.new(config_param) }
-
     describe "with configured guest as argument" do
       it "returns correct command" do
-        subject.stop_guest('linux').should eq("VBoxManage controlvm 'Ubuntu Linux' poweroff")
+        subject.stop_guest('linux').should eq("VBoxManage controlvm 'Ubuntu Linux' acpipowerbutton")
       end
     end
   end

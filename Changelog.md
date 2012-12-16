@@ -45,3 +45,8 @@
 
 * First RSpec tests and guard added for TDD development.
 * VirtualBox command for start and stop virtual guest systems added. (command => vbox:[start|stop])
+
+## v0.0.12
+
+* VirtualBox command connects automaticaly to ssh server, if guest configuration has 'ssh' connection data. (command => vbox:start)
+* 'VBoxManage controlvm ' uses 'acpipowerbutton' instead of 'poweroff', now. (command => vbox:stop)

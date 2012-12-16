@@ -1,7 +1,0 @@
-crypt:
-  mount_folder: /Volumes
-  encrypted_devices:
-    hdd: /dev/rdisk2s2
-vbox:
-  guests:
-    windows: Windows XP

@@ -3,7 +3,7 @@ require 'net/http'
 require 'marhan_cli/command'
 
 module MarhanCli
-  class Web < MarhanCli::Command
+  class WebCommand < MarhanCli::Command
 
     namespace :web
 

@@ -3,7 +3,7 @@ require 'marhan_cli/network/remote_machine'
 require 'marhan_cli/command'
 
 module MarhanCli
-  class Network < MarhanCli::Command
+  class NetworkCommand < MarhanCli::Command
 
     namespace :net
 

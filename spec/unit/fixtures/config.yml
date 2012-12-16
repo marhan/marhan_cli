@@ -1,0 +1,14 @@
+crypt:
+  mount_folder: /Volumes
+  encrypted_devices:
+    hdd: /dev/rdisk2s2
+vbox:
+  guests:
+    linux:
+      name: Ubuntu Linux
+      ssh:
+        user: markus
+        host: localhost
+        port: 2222
+    windows:
+      name: Windows XP

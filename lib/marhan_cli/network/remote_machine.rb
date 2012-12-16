@@ -26,7 +26,40 @@ module MarhanCli
         end
 
         raise RemoteMachineError, "#{stderr}" unless stderr.empty?
+      end
+    end
 
+    def wait_for_ssh_server_status(user)
+      Net::SSH.start(@home, user, :port => @port) do |ssh|
+        status = "";
+        channel = ssh.open_channel do |ch|
+          ch.exec "status ssh" do |ch, success|
+            raise "could not execute command" unless success
+            ch.on_data do |c, data|
+              status << data
+            end
+            ch.on_extended_data do |c, type, data|
+              $STDERR.print data
+            end
+          end
+        end
+        channel.wait
+        return status
+      end
+    end
+
+    def ssh_server_running?(user)
+      status = wait_for_ssh_server_status(user)
+      status.match(%r{ssh start/running.+})
+    end
+
+    def exec_remote_command(user, remote_command)
+      Net::SSH.start(@host, user, :port => @port) do |ssh|
+        stderr = ""
+        ssh.exec!(remote_command) do |channel, stream, data|
+          stderr << data if stream == :stderr
+        end
+        raise RemoteMachineError, "#{stderr}" unless stderr.empty?
       end
     end
   end

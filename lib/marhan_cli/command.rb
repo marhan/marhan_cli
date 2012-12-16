@@ -1,6 +1,5 @@
 # encoding: utf-8
 require "thor"
-require "ambience"
 require 'marhan_cli/config'
 
 module MarhanCli
@@ -28,7 +27,7 @@ module MarhanCli
     end
 
     def load_config
-      Config.init
+      MarhanCli::Config.init
     end
 
     def get_or_ask(option_name)
