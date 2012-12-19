@@ -48,6 +48,7 @@ module MarhanCli
           if virtual_box.guest_ssh_server_up?(guest_to_start)
             say "SSH server is up. Trying to connect...", :green
             say ""
+            # set user by configuration
             run "ssh -p 2222 localhost"
           end
         end
