@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'marhan_cli/command'
 require 'marhan_cli/apps/virtual_box'
+require 'marhan_cli/apps/bash'
 
 module MarhanCli
   class VBoxCommand < MarhanCli::Command
@@ -49,7 +50,10 @@ module MarhanCli
             say "SSH server is up. Trying to connect...", :green
             say ""
             # set user by configuration
-            run "ssh -p 2222 localhost"
+
+            bash = MarhanCli::Bash.new
+            ssh_config = vbox_config.guests[guest_to_start].ssh
+            run bash.ssh_command(ssh_config)
           end
         end
       end

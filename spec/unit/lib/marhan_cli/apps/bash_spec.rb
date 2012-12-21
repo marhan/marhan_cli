@@ -18,11 +18,11 @@ describe "bash" do
     describe "with valid params" do
 
       it "returns ssh command string for user, password and host" do
-        subject.ssh_command(params).should eq("ssh -u any_user -h any_host -p 22")
+        subject.ssh_command(params).should eq("ssh any_host -l any_user -p 22")
       end
 
       it "returns ssh command string for user, password, host and port" do
-        subject.ssh_command(params.merge({:port => "2222"})).should eq("ssh -u any_user -h any_host -p 2222")
+        subject.ssh_command(params.merge({:port => "2222"})).should eq("ssh any_host -l any_user -p 2222")
       end
 
     end
