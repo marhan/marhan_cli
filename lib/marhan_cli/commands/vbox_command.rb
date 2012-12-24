@@ -37,7 +37,7 @@ module MarhanCli
         vbox_config = load_vbox_config
         virtual_box = VirtualBox.new(vbox_config)
         guest_name = get_or_ask(:guest)
-        run virtual_box.start_guest(guest_name)
+        run virtual_box.guest_start_command(guest_name)
 
         if virtual_box.ssh_connection_configured?(guest_name)
           say ""
@@ -45,7 +45,7 @@ module MarhanCli
           if virtual_box.guest_ssh_server_up?(guest_name)
             say "SSH server is up. Trying to connect...", :green
             say ""
-            run virtual_box.ssh_guest_command(guest_name)
+            run virtual_box.guest_ssh_command(guest_name)
           end
         end
       end
@@ -56,7 +56,7 @@ module MarhanCli
         config = load_vbox_config
         guest_name = get_or_ask(:guest)
         virtual_box = VirtualBox.new(config)
-        run virtual_box.stop_guest(guest_name)
+        run virtual_box.guest_stop_command(guest_name)
       end
     end
 

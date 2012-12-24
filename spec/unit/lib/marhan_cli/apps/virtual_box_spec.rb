@@ -24,10 +24,10 @@ describe MarhanCli::VirtualBox do
     end
   end
 
-  context ".start_guest" do
+  context ".guest_start_command" do
     describe "with configured guest as argument" do
       it "returns correct command" do
-        subject.start_guest('linux').should eq("VBoxManage startvm 'Ubuntu Linux'")
+        subject.guest_start_command('linux').should eq("VBoxManage startvm 'Ubuntu Linux'")
       end
     end
 
@@ -61,10 +61,10 @@ describe MarhanCli::VirtualBox do
     end
   end
 
-  context ".stop_guest" do
+  context ".guest_stop_command" do
     describe "with configured guest as argument" do
       it "returns correct command" do
-        subject.stop_guest('linux').should eq("VBoxManage controlvm 'Ubuntu Linux' acpipowerbutton")
+        subject.guest_stop_command('linux').should eq("VBoxManage controlvm 'Ubuntu Linux' acpipowerbutton")
       end
     end
   end
@@ -84,18 +84,18 @@ describe MarhanCli::VirtualBox do
 
   end
 
-  context ".ssh_guest_command" do
+  context ".guest_ssh_command" do
 
     describe "with existing ssh configuration" do
       it "returns ssh connection command" do
-        subject.ssh_guest_command('linux').should eq("ssh localhost -l nameofuser -p 2222")
+        subject.guest_ssh_command('linux').should eq("ssh localhost -l nameofuser -p 2222")
       end
     end
 
     describe "without any ssh configuration " do
       it "raise error" do
         expect {
-          subject.ssh_guest_command('windows')
+          subject.guest_ssh_command('windows')
         }.to raise_error(error=ArgumentError, message="No ssh configuration found for windows")
       end
     end

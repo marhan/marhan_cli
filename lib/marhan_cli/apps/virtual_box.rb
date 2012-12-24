@@ -12,11 +12,11 @@ module MarhanCli
       @guests = config.guests
     end
 
-    def start_guest(guest_name)
+    def guest_start_command(guest_name)
       "VBoxManage startvm '#{vbox_name(guest_name)}'"
     end
 
-    def stop_guest(guest_name)
+    def guest_stop_command(guest_name)
       "VBoxManage controlvm '#{vbox_name(guest_name)}' acpipowerbutton"
     end
 
@@ -29,7 +29,7 @@ module MarhanCli
       @guests[guest_name].key?(:ssh)
     end
 
-    def ssh_guest_command(guest_name)
+    def guest_ssh_command(guest_name)
       bash = MarhanCli::Bash.new
       raise ArgumentError, "No ssh configuration found for #{guest_name}" unless guests[guest_name].ssh?
       bash.ssh_command(guests[guest_name].ssh)
