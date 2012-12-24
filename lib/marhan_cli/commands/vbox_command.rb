@@ -32,28 +32,20 @@ module MarhanCli
 
     private
 
-    def start_ssh_client
-
-    end
-
     def start_guest
       Proc.new do
         vbox_config = load_vbox_config
-        virtual_box = VirtualBox.new(vbox_config.guests)
-        guest_to_start = get_or_ask(:guest)
-        run virtual_box.start_guest(guest_to_start)
+        virtual_box = VirtualBox.new(vbox_config)
+        guest_name = get_or_ask(:guest)
+        run virtual_box.start_guest(guest_name)
 
-        if vbox_config.guests[guest_to_start].key?(:ssh)
+        if virtual_box.ssh_connection_configured?(guest_name)
           say ""
           say "Waiting for response from SSH server...", :green
-          if virtual_box.guest_ssh_server_up?(guest_to_start)
+          if virtual_box.guest_ssh_server_up?(guest_name)
             say "SSH server is up. Trying to connect...", :green
             say ""
-            # set user by configuration
-
-            bash = MarhanCli::Bash.new
-            ssh_config = vbox_config.guests[guest_to_start].ssh
-            run bash.ssh_command(ssh_config)
+            run virtual_box.ssh_guest_command(guest_name)
           end
         end
       end
@@ -63,7 +55,7 @@ module MarhanCli
       Proc.new do
         config = load_vbox_config
         guest_name = get_or_ask(:guest)
-        virtual_box = VirtualBox.new(config.guests)
+        virtual_box = VirtualBox.new(config)
         run virtual_box.stop_guest(guest_name)
       end
     end

@@ -3,10 +3,10 @@ require 'spec_helper'
 require 'marhan_cli/apps/virtual_box'
 require 'marhan_cli/config'
 
-describe "VirtualBoxApp" do
+describe MarhanCli::VirtualBox do
 
   let(:config_param) { MarhanCli::Config.init(
-      File.join("spec", "unit", "fixtures", "config.yml")).vbox.guests }
+      File.join("spec", "unit", "fixtures", "config.yml")).vbox }
 
   let(:subject) { MarhanCli::VirtualBox.new(config_param) }
 
@@ -19,7 +19,7 @@ describe "VirtualBoxApp" do
 
     describe "with config hash as argument" do
       it "has set config hash" do
-        subject.guests.should eq(config_param)
+        subject.guests.should eq(config_param.guests)
       end
     end
   end
@@ -68,4 +68,38 @@ describe "VirtualBoxApp" do
       end
     end
   end
+
+  context ".ssh_connection_configured?" do
+    describe "if ssh connection is configured" do
+      it "returns 'true'" do
+        subject.ssh_connection_configured?('linux').should be(true)
+      end
+    end
+
+    describe "if ssh connection is not configured" do
+      it "returns 'false'" do
+        subject.ssh_connection_configured?('windows').should be(false)
+      end
+    end
+
+  end
+
+  context ".ssh_guest_command" do
+
+    describe "with existing ssh configuration" do
+      it "returns ssh connection command" do
+        subject.ssh_guest_command('linux').should eq("ssh localhost -l nameofuser -p 2222")
+      end
+    end
+
+    describe "without any ssh configuration " do
+      it "raise error" do
+        expect {
+          subject.ssh_guest_command('windows')
+        }.to raise_error(error=ArgumentError, message="No ssh configuration found for windows")
+      end
+    end
+
+  end
+
 end
