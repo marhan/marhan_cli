@@ -18,11 +18,10 @@ module MarhanCli
       rescue Exception => e
         raise "Configuration file could not pared: #{e}"
       end
-
     end
 
     def self.default_config_file
-      File.join(File.expand_path("~/"), ".marhan_cli.yml")
+      File.expand_path(File.join(Dir.home, ".marhan_cli.yml"))
     end
 
   end

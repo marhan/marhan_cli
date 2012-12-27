@@ -48,9 +48,22 @@
 
 ## v0.0.12
 
-* VirtualBox command connects automaticaly to ssh server, if guest configuration has 'ssh' connection data. (command => vbox:start)
+* VirtualBox command connects automatically to ssh server, if guest configuration has 'ssh' connection data. (command => vbox:start)
 * 'VBoxManage controlvm ' uses 'acpipowerbutton' instead of 'poweroff', now. (command => vbox:stop)
 
 ## v0.0.13
 
 * Configuration file will be used completely. 'SSH' configuration was ignored.
+
+## v0.0.14
+
+* Internal refactorings and improvements.
+
+## v0.0.15
+
+* New command added for starting and stopping services. (command => serv:[start|stop])
+* This command supports only the CI Server Jenkins, at the moment.
+
+## v0.0.16
+
+* Internal refactorings and improvements.

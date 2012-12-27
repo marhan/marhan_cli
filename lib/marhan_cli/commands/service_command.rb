@@ -7,24 +7,14 @@ module MarhanCli
 
     namespace :serv
 
-    desc "serv:start", "Starts daemon service"
-
-    method_option :service,
-                  :type => :string,
-                  :aliases => "-s",
-                  :desc => "Name of service in configuration file."
+    desc "serv:start", "Starts Jenkins as a service"
 
     def start
       execute start_service
     end
 
 
-    desc "serv:stop", "Stops daemon service"
-
-    method_option :service,
-                  :type => :string,
-                  :aliases => "-s",
-                  :desc => "Name of service in configuration file."
+    desc "serv:stop", "Stops Jenkins as a service"
 
     def stop
       execute stop_service
