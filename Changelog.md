@@ -67,3 +67,7 @@
 ## v0.0.16
 
 * Internal refactorings and improvements.
+
+## v0.0.17
+
+* nothing, yet
