@@ -41,11 +41,11 @@ describe "Config" do
         vbox.guests.linux.ssh.host.should eq("localhost")
       end
 
-      it "with 'markus' for guests.linux.ssh.user" do
+      it "with 'nameofuser' for guests.linux.ssh.user" do
         vbox.guests.linux.ssh.user.should eq("nameofuser")
       end
 
-      it "with 'nil' for guests.windows.ssh.nil?" do
+      it "with 'nil' for guests.windows.ssh" do
         vbox.guests.windows.key?(:ssh).should be_false
       end
 
