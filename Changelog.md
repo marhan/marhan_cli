@@ -71,3 +71,7 @@
 ## v0.0.17
 
 * Nothing changed! Increased version for build and release by build server.
+
+## v.0.0.18
+
+* Internal Refactorings.
