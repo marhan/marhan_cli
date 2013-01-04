@@ -70,4 +70,4 @@
 
 ## v0.0.17
 
-* nothing, yet
+* Nothing changed! Increased version for build and release by build server.
