@@ -5,8 +5,7 @@ require 'marhan_cli/config'
 describe "Config" do
 
   context "self.init" do
-    let(:subject) { MarhanCli::Config.init(
-        File.join("spec", "unit", "fixtures", "config.yml")) }
+    let(:subject) { MarhanCli::Config.init() }
 
     describe "returns config" do
       it "as Hashie::Mash" do

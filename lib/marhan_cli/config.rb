@@ -4,14 +4,15 @@ require "ambience"
 module MarhanCli
   class Config
 
-    def self.init(config_file = nil)
-      @config_file = config_file || default_config_file
+    def self.init()
+      ENV['MARHAN_CLI_CONFIG'] ||= default_config_file
+      @config_file = ENV['MARHAN_CLI_CONFIG']
       load_config(@config_file)
     end
 
     def self.load_config(config_file)
       unless File.exists?(config_file)
-        raise "Stop processing! Command needs the configuration file '#{config_file}' in you're home directory."
+        raise "Stop processing! Command not found configuration file '#{config_file}."
       end
       begin
         Ambience.create(config_file).to_mash

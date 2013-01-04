@@ -5,8 +5,7 @@ require 'marhan_cli/config'
 
 describe MarhanCli::VirtualBox do
 
-  let(:config_param) { MarhanCli::Config.init(
-      File.join("spec", "unit", "fixtures", "config.yml")).vbox }
+  let(:config_param) { MarhanCli::Config.init.vbox }
 
   let(:subject) { MarhanCli::VirtualBox.new(config_param) }
 
